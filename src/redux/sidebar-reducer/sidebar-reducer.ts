@@ -53,7 +53,7 @@ const sidebarReducer = (state=initialState, action:ActionsTypes): InitialStateTy
 };
 
 export const actions = {
-	initialSidebarCategorys : (categories: any) => ({
+	initialSidebarCategories : (categories: any) => ({
 		type: "SN/sidebar/INITIAL_SIDEBAR_CATEGORIES",
 		categories
 	}) as const,
@@ -77,7 +77,7 @@ export const initialSidebarTC = ():ThunkType => {
 			const productCategories = await SidebarAPI.getCategories();
 			const productBrands = await SidebarAPI.getBrands();
 
-			dispatch(actions.initialSidebarCategorys(productCategories));
+			dispatch(actions.initialSidebarCategories(productCategories));
 			dispatch(actions.initialSidebarBrands(productBrands));
 
 			dispatch(actions.initializedSidebar(true));

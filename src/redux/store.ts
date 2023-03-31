@@ -6,9 +6,9 @@ import sidebarReducer from "./sidebar-reducer/sidebar-reducer";
 import objectReducer from "./object-reducer/object-reducer";
 
 const reducers = combineReducers({
-	sidebarReducer,
-	listReducer,
-	objectReducer
+	sidebar: sidebarReducer,
+	productList: listReducer,
+	productObject: objectReducer
 });
 
 type RootReducerType = typeof reducers;
