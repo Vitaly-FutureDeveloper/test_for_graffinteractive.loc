@@ -2,9 +2,13 @@ import {Action, applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 
 import listReducer from "./list-reducer/list-reducer";
+import sidebarReducer from "./sidebar-reducer/sidebar-reducer";
+import objectReducer from "./object-reducer/object-reducer";
 
 const reducers = combineReducers({
-	listReducer
+	sidebarReducer,
+	listReducer,
+	objectReducer
 });
 
 type RootReducerType = typeof reducers;

@@ -1,23 +1,24 @@
 export interface ProductListInterface {
-	initialized: boolean
-	products: Array<ProductListType>
+	initialized: boolean,
+	products: Array<ProductListType>,
 };
 
 export interface ProductObjectInterface {
-	initialized: boolean
-	product: ProductObjectType | null
+	initialized: boolean,
+	product: ProductObjectType | null,
 };
 
 export interface SidebarInterface {
-	initialized: boolean
-	categories: Array<SidebarCategoriesRadioType> | null
+	initialized: boolean,
+	brands: Array<SidebarCategoriesRadioType> | null,
+	categories: Array<SidebarCategoriesRadioType> | null,
 };
 
 export type ProductListType = {
 	id: number,
 	title: string,
 	brand: string,
-	category: string
+	category: string,
 };
 
 export type ProductObjectType = {
@@ -25,7 +26,7 @@ export type ProductObjectType = {
 	title: string,
 	description: string,
 	brand: string,
-	category: string
+	category: string,
 };
 
 export type SidebarCategoriesRadioType = {

@@ -1,10 +1,10 @@
 import {SidebarCategoriesRadioType, SidebarInterface} from "../../types/ReduxTypes";
 import {BaseThunkType, InferActionsTypes} from "../store";
-import {ProductObjectAPI} from "../../api/ProductObjectAPI";
 import {SidebarAPI} from "../../api/SidebarAPI";
 
 const initialState = {
 	initialized: false,
+	brands: null as Array<SidebarCategoriesRadioType> | null,
 	categories: null as Array<SidebarCategoriesRadioType> | null
 } as SidebarInterface;
 
@@ -15,7 +15,7 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionsTypes>;
 
 
-const objectReducer = (state=initialState, action:ActionsTypes): InitialStateType => {
+const sidebarReducer = (state=initialState, action:ActionsTypes): InitialStateType => {
 
 	switch (action.type){
 
@@ -25,6 +25,16 @@ const objectReducer = (state=initialState, action:ActionsTypes): InitialStateTyp
 				categories: action.categories.map((item: string) => ({
 					checked: false,
 					category: item,
+				}))
+			};
+		}
+
+		case "SN/sidebar/INITIAL_SIDEBAR_BRANDS": {
+			return {
+				...state,
+				brands: action.brands.map((item: string) => ({
+					checked: false,
+					brands: item,
 				}))
 			};
 		}
@@ -43,9 +53,14 @@ const objectReducer = (state=initialState, action:ActionsTypes): InitialStateTyp
 };
 
 export const actions = {
-	initialSidebarCategory : (categories: any) => ({
+	initialSidebarCategorys : (categories: any) => ({
 		type: "SN/sidebar/INITIAL_SIDEBAR_CATEGORIES",
 		categories
+	}) as const,
+
+	initialSidebarBrands : (brands: any) => ({
+		type: "SN/sidebar/INITIAL_SIDEBAR_BRANDS",
+		brands
 	}) as const,
 
 	initializedSidebar : (initialized: boolean) => ({
@@ -54,12 +69,17 @@ export const actions = {
 	}) as const,
 };
 
-export const initialSidebarTC = (id:number):ThunkType => {
+export const initialSidebarTC = ():ThunkType => {
 	return async (dispatch) => {
 		dispatch(actions.initializedSidebar(false));
+
 		try{
 			const productCategories = await SidebarAPI.getCategories();
-			dispatch(actions.initialSidebarCategory(productCategories));
+			const productBrands = await SidebarAPI.getBrands();
+
+			dispatch(actions.initialSidebarCategorys(productCategories));
+			dispatch(actions.initialSidebarBrands(productBrands));
+
 			dispatch(actions.initializedSidebar(true));
 		} catch (e) {
 			throw e;
@@ -67,4 +87,4 @@ export const initialSidebarTC = (id:number):ThunkType => {
 	}
 };
 
-export default objectReducer;
+export default sidebarReducer;
