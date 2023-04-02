@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from "./SelectCheckboxes.module.scss";
 import {getProductBrands, getProductBrandsCheckeds} from "../../../redux/sidebar-reducer/sidebar-selectors";
 import {useSelector} from "react-redux";

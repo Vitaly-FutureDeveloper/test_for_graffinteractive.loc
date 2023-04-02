@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from "./RadioItem.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentCategory, getProductBrandsValue} from "../../../../redux/sidebar-reducer/sidebar-selectors";
-import {AppStateType} from "../../../../redux/store";
-import {checkSidebarBrandTC, setCurrentCategoryTC} from "../../../../redux/sidebar-reducer/sidebar-reducer";
+import {getCurrentCategory} from "../../../../redux/sidebar-reducer/sidebar-selectors";
+import {setCurrentCategoryTC} from "../../../../redux/sidebar-reducer/sidebar-reducer";
+import {changeCurrentCategoryTC} from "../../../../redux/list-reducer/list-reducer";
 
 
 interface PropsType {
@@ -18,6 +18,7 @@ export const RadioItem: React.FC<PropsType> = ({name}) => {
 	const onCheckCheckbox = (evt: React.ChangeEvent<HTMLInputElement>) => {
 		evt.preventDefault();
 		dispatch(setCurrentCategoryTC(name));
+		dispatch(changeCurrentCategoryTC(name));
 	};
 
 
@@ -26,7 +27,7 @@ export const RadioItem: React.FC<PropsType> = ({name}) => {
 			<div className={styles.inputBlock__wrap}>
 				<input className={styles.input + ' ' + 'visually-hidden'}
 							 name={"category"}
-							 type={"checkbox"}
+							 type={"radio"}
 							 checked={currentCategory === name}
 							 onChange={onCheckCheckbox}/>
 				<p className={styles.inputBlock__name}>{name}</p>

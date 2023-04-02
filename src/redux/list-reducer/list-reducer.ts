@@ -3,7 +3,6 @@ import {BaseThunkType, InferActionsTypes} from "../store";
 import {ProductListAPI} from "../../api/ProductListAPI";
 import {ResponseProductType} from "../../types/ResponseTypes";
 import {SidebarAPI} from "../../api/SidebarAPI";
-import {debounce} from "../../api/decorators";
 
 const initialState = {
 	initialized: false,
@@ -62,7 +61,8 @@ export const initialProductsListTC = ():ThunkType => {
 	return async (dispatch) => {
 		dispatch(actions.initializedList(false));
 		try{
-			const productList = await ProductListAPI.getProductList(1, "smartphones");
+			const productCategories = await SidebarAPI.getCategories();
+			const productList = await ProductListAPI.getProductList(1, productCategories[0]);
 			dispatch(actions.initialProductsList(productList.products));
 			dispatch(actions.initializedList(true));
 		} catch (e) {
@@ -77,6 +77,19 @@ export const searchObjectTC = (text: string):ThunkType => {
 		try{
 			const productList = await SidebarAPI.getSearched(text);
 
+			dispatch(actions.initialProductsList(productList.products));
+			dispatch(actions.initializedList(true));
+		} catch (e) {
+			throw e;
+		}
+	}
+};
+
+export const changeCurrentCategoryTC = (category: string):ThunkType => {
+	return async (dispatch) => {
+		dispatch(actions.initializedList(false));
+		try{
+			const productList = await ProductListAPI.getProductList(1, category);
 			dispatch(actions.initialProductsList(productList.products));
 			dispatch(actions.initializedList(true));
 		} catch (e) {

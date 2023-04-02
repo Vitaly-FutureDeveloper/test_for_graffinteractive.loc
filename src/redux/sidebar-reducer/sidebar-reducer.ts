@@ -121,7 +121,9 @@ export const initialSidebarTC = ():ThunkType => {
 
 export const checkSidebarBrandTC = (name: string):ThunkType => {
 	return async (dispatch, getState) => {
+		//Нет эндпоинта, чтоб получить список брэндов - фильтруем вручную
 		const index = getState().sidebar.brands?.findIndex((brand) => brand.brand === name);
+
 		dispatch(actions.checkSidebarBrand(index));
 	}
 };

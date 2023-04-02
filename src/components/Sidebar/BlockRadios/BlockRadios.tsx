@@ -1,11 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from "./BlockRadios.module.scss";
-import {
-	getCurrentCategory,
-	getProductBrands,
-	getProductBrandsCheckeds,
-	getProductCategories
-} from "../../../redux/sidebar-reducer/sidebar-selectors";
+import {getProductBrandsCheckeds, getProductCategories} from "../../../redux/sidebar-reducer/sidebar-selectors";
 import {useSelector} from "react-redux";
 import {RadioItem} from "./RadioItem/RadioItem";
 
