@@ -14,9 +14,6 @@ export const RadioItem: React.FC<PropsType> = ({name}) => {
 	const dispatch = useDispatch<any>();
 	const currentCategory = useSelector(getCurrentCategory);
 
-	useEffect(() => {
-		console.log(currentCategory === name)
-	});
 
 	const onCheckCheckbox = (evt: React.ChangeEvent<HTMLInputElement>) => {
 		evt.preventDefault();

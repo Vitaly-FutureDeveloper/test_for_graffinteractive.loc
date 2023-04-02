@@ -132,11 +132,7 @@ export const setCurrentCategoryTC = (name: string):ThunkType => {
 	}
 };
 
-export const searchObjectTC = (text: string):ThunkType => {
-	return async (dispatch) => {
 
-	}
-};
 
 
 

@@ -4,7 +4,8 @@ import {ResponseCategoriesType, ResponseProductListType, ResponseProductType} fr
 
 export const SidebarAPI = {
 	getSearched(text: string) {
-		return instance.get<ResponseCategoriesType>(`/products/search?q=${text}`).then(response => response.data);
+		// return instance.get<ResponseCategoriesType>(`/products/search?q=${text}`).then(response => response.data);
+		return fetch(`https://dummyjson.com/products/search?q=${text}`).then(response => response.json());
 	},
 
 	getCategories() {

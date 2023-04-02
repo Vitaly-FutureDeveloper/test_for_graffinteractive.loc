@@ -17,7 +17,6 @@ export const Sidebar: React.FC = () => {
 
 		const handleResize = (evt:any) => {
 			setWidth(evt.target.innerWidth);
-			console.log(evt.target.innerWidth)
 		};
 
 

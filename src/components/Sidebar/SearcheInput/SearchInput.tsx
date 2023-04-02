@@ -1,11 +1,15 @@
 import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 import styles from "./SearchInput.module.scss";
+import {searchObjectTC} from "../../../redux/list-reducer/list-reducer";
 
 export const SearchInput:React.FC = () => {
+	const dispatch = useDispatch<any>();
 	const [value, setValue] = useState('');
 
 	const onSearch = (evt: any) => {
-		setValue(evt.currentTarget.value)
+		setValue(evt.currentTarget.value);
+		dispatch(searchObjectTC(evt.currentTarget.value));
 	};
 
 

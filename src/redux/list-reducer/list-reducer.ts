@@ -2,6 +2,8 @@ import {ProductListInterface} from "../../types/ReduxTypes";
 import {BaseThunkType, InferActionsTypes} from "../store";
 import {ProductListAPI} from "../../api/ProductListAPI";
 import {ResponseProductType} from "../../types/ResponseTypes";
+import {SidebarAPI} from "../../api/SidebarAPI";
+import {debounce} from "../../api/decorators";
 
 const initialState = {
 	initialized: false,
@@ -66,7 +68,20 @@ export const initialProductsListTC = ():ThunkType => {
 		} catch (e) {
 			throw e;
 		}
+	}
+};
 
+export const searchObjectTC = (text: string):ThunkType => {
+	return async (dispatch) => {
+		dispatch(actions.initializedList(false));
+		try{
+			const productList = await SidebarAPI.getSearched(text);
+
+			dispatch(actions.initialProductsList(productList.products));
+			dispatch(actions.initializedList(true));
+		} catch (e) {
+			throw e;
+		}
 	}
 };
 
