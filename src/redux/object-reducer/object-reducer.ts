@@ -18,6 +18,13 @@ const objectReducer = (state=initialState, action:ActionsTypes): InitialStateTyp
 
 	switch (action.type){
 
+		case "SN/productObject/CLEAR_PRODUCT_OBJECT": {
+			return {
+				...state,
+				product: null,
+			};
+		}
+
 		case "SN/productObject/INITIAL_PRODUCT_OBJECT": {
 			return {
 				...state,
@@ -27,6 +34,8 @@ const objectReducer = (state=initialState, action:ActionsTypes): InitialStateTyp
 					title: action.product.title,
 					brand: action.product.brand,
 					category: action.product.category,
+					price: action.product.price,
+					stock: action.product.stock,
 				}
 			};
 		}
@@ -45,6 +54,10 @@ const objectReducer = (state=initialState, action:ActionsTypes): InitialStateTyp
 };
 
 export const actions = {
+	clearProductObject : () => ({
+		type: "SN/productObject/CLEAR_PRODUCT_OBJECT",
+	}) as const,
+
 	initialProductObject : (product: any) => ({
 		type: "SN/productObject/INITIAL_PRODUCT_OBJECT",
 		product

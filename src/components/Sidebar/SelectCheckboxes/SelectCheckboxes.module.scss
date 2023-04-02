@@ -1,0 +1,73 @@
+@import './src/styles/mixins/media';
+@import './src/styles/mixins/no-list-style';
+
+
+.inputBlock__label{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.inputBlock__name{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 140%;
+	color: #C5C7CE;
+
+	margin: 0;
+	padding: 0;
+}
+.openBlock{
+	background: #393C46;
+	border-radius: 2px;
+}
+.openBlock__text{
+	position: relative;
+
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 140%;
+
+	background: #393C46;
+	border-radius: 2px;
+	color: #F2F2F2;
+
+	padding: 12px 12px 12px 16px;
+
+	&::after{
+		transition: 0.2s;
+		content: '';
+		position: absolute;
+		right: 16px;
+		width: 20px;
+		height: 20px;
+		background-image: url("../../../assets/icons/Chevron_Down.svg");
+	}
+}
+
+.openBlock__text.openBlock__text_active{
+	&::after{
+		content: '';
+		position: absolute;
+		right: 16px;
+		width: 20px;
+		height: 20px;
+		background-image: url("../../../assets/icons/Chevron_Down.svg");
+		transform: rotateZ(180deg);
+	}
+
+	border: double 1px transparent;
+	background-image: linear-gradient(#393C46, #393C46),
+	linear-gradient(#BC75FF, #798FFF);
+	background-origin: border-box;
+	background-clip: padding-box, border-box;
+}
+
+.openBlock__text_active ~ .checkboxList{
+	max-height: 180px;
+}
+.checkboxList{
+	@include no-list-style;
+
+	max-height: 0;
+	overflow: auto;
+}

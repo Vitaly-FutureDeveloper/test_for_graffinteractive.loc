@@ -1,0 +1,42 @@
+@import './src/styles/mixins/no-list-style';
+@import './src/styles/mixins/media';
+
+
+
+.productListPage{
+
+	@include media-tablet{
+		display: flex;
+		justify-content: space-between;
+	}
+}
+.title{
+	display: none;
+
+	@include media-tablet {
+		display: block;
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 130%;
+		color: rgba(255, 255, 255, 0.87);
+	}
+}
+
+.productList_block{
+	margin: 0 8px;
+
+
+	@include media-tablet {
+		margin: 0 20px;
+		width: 100%;
+	}
+
+	@include media-desctop {
+		margin: 0 72px;
+	}
+}
+.productList{
+	@include no-list-style;
+	
+	padding-bottom: 50px;
+}

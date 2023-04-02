@@ -1,0 +1,22 @@
+@import '../variables/variables';
+
+
+
+@mixin media-tablet {
+	@media (min-width: $tablet_size){
+		@content;
+	}
+}
+
+@mixin media-desctop {
+	@media (min-width: $desctop_size){
+		@content;
+	}
+}
+
+@mixin media-custom($width) {
+	@media (min-width: $width){
+		@content;
+	}
+}
+

@@ -1,0 +1,76 @@
+@import './src/styles/mixins/media';
+
+.checkboxList__item{
+	&:not(:last-child){
+		margin-bottom: 18px;
+	}
+}
+.inputBlock{
+	margin: 0 8px;
+}
+.inputBlock__label{
+	position: relative;
+	top: 10px;
+	left: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	width: 205px;
+
+	z-index: 5;
+}
+.inputBlock__name{
+	display: inline-flex;
+	align-items: center;
+	user-select: none;
+
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 140%;
+	color: #F2F2F2;
+
+	margin: 0;
+	padding: 0;
+}
+
+.inputBlock__wrap{
+	transition: 0.2s;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	overflow: hidden;
+
+	&:hover{
+		opacity: 0.5;
+	}
+}
+
+.inputBlock__wrap > .inputBlock__name::before {
+	content: "";
+	display: inline-block;
+	box-sizing: border-box;
+
+	flex-shrink: 0;
+	flex-grow: 0;
+
+	padding-left: 35px;
+
+	border: 0;
+	width: 20px;
+	height: 20px;
+	background-image: url("../../../../assets/icons/CheckBox_No.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+/* стили для чекбокса, находящегося в состоянии checked */
+.inputBlock__wrap > .input:checked + p::before{
+	border: 0;
+	width: 20px;
+	height: 20px;
+	background-image: url("../../../../assets/icons/CheckBox_Yes.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+}

@@ -60,8 +60,8 @@ export const initialProductsListTC = ():ThunkType => {
 	return async (dispatch) => {
 		dispatch(actions.initializedList(false));
 		try{
-			const productList = await ProductListAPI.getProductList();
-			dispatch(actions.initialProductsList(productList));
+			const productList = await ProductListAPI.getProductList(1, "smartphones");
+			dispatch(actions.initialProductsList(productList.products));
 			dispatch(actions.initializedList(true));
 		} catch (e) {
 			throw e;

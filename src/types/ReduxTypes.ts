@@ -10,8 +10,9 @@ export interface ProductObjectInterface {
 
 export interface SidebarInterface {
 	initialized: boolean,
-	brands: Array<SidebarCategoriesRadioType> | null,
+	brands: Array<SidebarBrandsRadioType> | null,
 	categories: Array<SidebarCategoriesRadioType> | null,
+	currentCategory: string | null,
 };
 
 export type ProductListType = {
@@ -27,10 +28,19 @@ export type ProductObjectType = {
 	description: string,
 	brand: string,
 	category: string,
+	price: number,
+	stock: number,
 };
 
 export type SidebarCategoriesRadioType = {
+	id: number,
 	checked: boolean,
 	category: string,
+}
+
+export type SidebarBrandsRadioType = {
+	id: number,
+	checked: boolean,
+	brand: string,
 }
 

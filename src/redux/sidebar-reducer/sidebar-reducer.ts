@@ -1,11 +1,13 @@
-import {SidebarCategoriesRadioType, SidebarInterface} from "../../types/ReduxTypes";
+import {SidebarBrandsRadioType, SidebarCategoriesRadioType, SidebarInterface} from "../../types/ReduxTypes";
 import {BaseThunkType, InferActionsTypes} from "../store";
 import {SidebarAPI} from "../../api/SidebarAPI";
+import {ResponseProductType} from "../../types/ResponseTypes";
 
 const initialState = {
 	initialized: false,
-	brands: null as Array<SidebarCategoriesRadioType> | null,
-	categories: null as Array<SidebarCategoriesRadioType> | null
+	brands: null as Array<SidebarBrandsRadioType> | null,
+	categories: null as Array<SidebarCategoriesRadioType> | null,
+	currentCategory: null as string | null
 } as SidebarInterface;
 
 
@@ -22,21 +24,37 @@ const sidebarReducer = (state=initialState, action:ActionsTypes): InitialStateTy
 		case "SN/sidebar/INITIAL_SIDEBAR_CATEGORIES": {
 			return {
 				...state,
-				categories: action.categories.map((item: string) => ({
-					checked: false,
+				categories: action.categories.map((item: string, i:number) => ({
+					id: i,
+					checked: i === 0,
 					category: item,
 				}))
+			};
+		}
+
+		case "SN/sidebar/SET_CURRENT_SIDEBAR_CATEGORY": {
+			return {
+				...state,
+				currentCategory: action.name as string
 			};
 		}
 
 		case "SN/sidebar/INITIAL_SIDEBAR_BRANDS": {
 			return {
 				...state,
-				brands: action.brands.map((item: string) => ({
-					checked: false,
-					brands: item,
+				brands: action.brands.map((item: string, i:number) => ({
+					id: i,
+					checked: true,
+					brand: item,
 				}))
 			};
+		}
+
+		case "SN/sidebar/CHECK_SIDEBAR_BRAND": {
+			const body = JSON.parse( JSON.stringify(state) );
+			//@ts-ignore
+			body.brands[action.index].checked = !body.brands[action.index].checked;
+			return body;
 		}
 
 		case "SN/sidebar/INITIALIZED": {
@@ -63,6 +81,16 @@ export const actions = {
 		brands
 	}) as const,
 
+	setCurrentCategory : (name?: string) => ({
+		type: "SN/sidebar/SET_CURRENT_SIDEBAR_CATEGORY",
+		name
+	}) as const,
+
+	checkSidebarBrand : (index?: number) => ({
+		type: "SN/sidebar/CHECK_SIDEBAR_BRAND",
+		index
+	}) as const,
+
 	initializedSidebar : (initialized: boolean) => ({
 		type: "SN/sidebar/INITIALIZED",
 		initialized
@@ -75,9 +103,13 @@ export const initialSidebarTC = ():ThunkType => {
 
 		try{
 			const productCategories = await SidebarAPI.getCategories();
-			const productBrands = await SidebarAPI.getBrands();
+			const productBrandsPromise = await SidebarAPI.getBrands();
+			const productBrands = Array.from( new Set( productBrandsPromise.products.map((item: ResponseProductType) => item.brand) ) );
+
 
 			dispatch(actions.initialSidebarCategories(productCategories));
+			dispatch(actions.setCurrentCategory(productCategories[0]));
+
 			dispatch(actions.initialSidebarBrands(productBrands));
 
 			dispatch(actions.initializedSidebar(true));
@@ -86,5 +118,26 @@ export const initialSidebarTC = ():ThunkType => {
 		}
 	}
 };
+
+export const checkSidebarBrandTC = (name: string):ThunkType => {
+	return async (dispatch, getState) => {
+		const index = getState().sidebar.brands?.findIndex((brand) => brand.brand === name);
+		dispatch(actions.checkSidebarBrand(index));
+	}
+};
+
+export const setCurrentCategoryTC = (name: string):ThunkType => {
+	return async (dispatch) => {
+		dispatch(actions.setCurrentCategory(name));
+	}
+};
+
+export const searchObjectTC = (text: string):ThunkType => {
+	return async (dispatch) => {
+
+	}
+};
+
+
 
 export default sidebarReducer;
