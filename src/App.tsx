@@ -1,4 +1,5 @@
 import React from 'react';
+import {Toaster} from 'react-hot-toast';
 import './App.scss';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {Provider} from "react-redux";
@@ -26,6 +27,7 @@ function App() {
 									</Routes>
 							</main>
 						</div>
+						<Toaster />
 					</div>
 
 				</React.Suspense>

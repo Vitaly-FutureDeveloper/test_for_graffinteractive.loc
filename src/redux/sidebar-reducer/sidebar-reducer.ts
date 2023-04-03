@@ -103,7 +103,7 @@ export const initialSidebarTC = ():ThunkType => {
 
 		try{
 			const productCategories = await SidebarAPI.getCategories();
-			const productBrandsPromise = await SidebarAPI.getBrands();
+			const productBrandsPromise = await SidebarAPI.getBrands(productCategories[0]);
 			const productBrands = Array.from( new Set( productBrandsPromise.products.map((item: ResponseProductType) => item.brand) ) );
 
 
@@ -130,10 +130,11 @@ export const checkSidebarBrandTC = (name: string):ThunkType => {
 
 export const setCurrentCategoryTC = (name: string):ThunkType => {
 	return async (dispatch, getState) => {
-		const sidebarBrandsOn = getState().sidebar.brands?.map((brand) => brand.brand);
+		const productBrandsPromise = await SidebarAPI.getBrands(name);
+		const productBrands = Array.from( new Set( productBrandsPromise.products.map((item: ResponseProductType) => item.brand) ) );
 
 		dispatch(actions.setCurrentCategory(name));
-		dispatch(actions.initialSidebarBrands(sidebarBrandsOn));
+		dispatch(actions.initialSidebarBrands(productBrands));
 	}
 };
 

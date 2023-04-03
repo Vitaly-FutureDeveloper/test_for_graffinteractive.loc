@@ -2,6 +2,7 @@
 
 .productObjectSection{
 	padding: 30px 8px;
+	min-height: 95vh;
 
 	@include media-tablet{
 		padding: 40px 16px;

@@ -1,0 +1,35 @@
+.pagination {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: center;
+
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.paginationBtn {
+	border: 0;
+	width: 30px;
+	height: 30px;
+
+	background-color: transparent;
+	background-image: url("../../../assets/icons/Chevron_Down.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+
+	&:hover,
+	&:focus {
+		opacity: 0.5;
+	}
+}
+
+.paginationBtn__prev {
+	transform: rotateZ(90deg);
+	margin-right: 10px;
+}
+
+.paginationBtn__next {
+	transform: rotateZ(-90deg);
+	margin-left: 10px;
+}

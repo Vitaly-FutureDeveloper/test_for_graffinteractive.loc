@@ -1,6 +1,7 @@
 export interface ProductListInterface {
 	initialized: boolean,
 	products: Array<ProductListType>,
+	total: number,
 };
 
 export interface ProductObjectInterface {

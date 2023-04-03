@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getProductList, getProductListInitialized} from "../../redux/list-reducer/list-selectors";
 import Product from "./Product/Product";
 import {initialProductsListTC} from "../../redux/list-reducer/list-reducer";
+import Paginator from "./Paginator/Paginator";
 
 export const ProductList:React.FC = () => {
 	const dispatch = useDispatch<any>();
@@ -33,7 +34,13 @@ export const ProductList:React.FC = () => {
 																								brand={product.brand} />)
 				}
 			</ul>
+
+			<div>
+				<Paginator />
+			</div>
 		</div>
+
+
 	</section>
 };
 

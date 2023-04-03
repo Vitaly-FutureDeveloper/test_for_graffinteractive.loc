@@ -4,6 +4,7 @@
 
 
 .productListPage{
+	min-height: 95vh;
 
 	@include media-tablet{
 		display: flex;
@@ -37,6 +38,6 @@
 }
 .productList{
 	@include no-list-style;
-	
+
 	padding-bottom: 50px;
 }

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCategory} from "../../../../redux/sidebar-reducer/sidebar-selectors";
 import {setCurrentCategoryTC} from "../../../../redux/sidebar-reducer/sidebar-reducer";
 import {changeCurrentCategoryTC} from "../../../../redux/list-reducer/list-reducer";
+import {notify} from "../../../../api/toast";
 
 
 interface PropsType {
@@ -19,6 +20,9 @@ export const RadioItem: React.FC<PropsType> = ({name}) => {
 		evt.preventDefault();
 		dispatch(setCurrentCategoryTC(name));
 		dispatch(changeCurrentCategoryTC(name));
+
+		notify("Внимание! Фильтры могут быть отдельны друг от друга, потому что нет соотвествующих ендпоинтов в открытом источнике данных!");
+		setTimeout(() => notify("Но я старался!"), 1500);
 	};
 
 

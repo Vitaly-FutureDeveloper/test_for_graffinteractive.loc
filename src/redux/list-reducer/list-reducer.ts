@@ -6,7 +6,8 @@ import {SidebarAPI} from "../../api/SidebarAPI";
 
 const initialState = {
 	initialized: false,
-	products: []
+	products: [],
+	total: 0,
 } as ProductListInterface;
 
 
@@ -32,6 +33,13 @@ const listReducer = (state = initialState, action: ActionsTypes): InitialStateTy
 			};
 		}
 
+		case "SN/productList/SET_TOTAL_LIST": {
+			return {
+				...state,
+				total: action.total
+			};
+		}
+
 		case "SN/productList/INITIALIZED": {
 			return {
 				...state,
@@ -51,19 +59,26 @@ export const actions = {
 		products
 	}) as const,
 
+	setTotalList: (total: number) => ({
+		type: "SN/productList/SET_TOTAL_LIST",
+		total
+	}) as const,
+
 	initializedList: (initialized: boolean) => ({
 		type: "SN/productList/INITIALIZED",
 		initialized
 	}) as const,
 };
 
-export const initialProductsListTC = (): ThunkType => {
+export const initialProductsListTC = (page:number = 1): ThunkType => {
 	return async (dispatch) => {
 		dispatch(actions.initializedList(false));
 		try {
 			const productCategories = await SidebarAPI.getCategories();
-			const productList = await ProductListAPI.getProductList(1, productCategories[0]);
+			const productList = await ProductListAPI.getProductList(page, productCategories[0]);
+
 			dispatch(actions.initialProductsList(productList.products));
+			dispatch(actions.setTotalList(productList.total));
 			dispatch(actions.initializedList(true));
 		} catch (e) {
 			throw e;
@@ -78,6 +93,7 @@ export const searchObjectTC = (text: string): ThunkType => {
 			const productList = await SidebarAPI.getSearched(text);
 
 			dispatch(actions.initialProductsList(productList.products));
+			dispatch(actions.setTotalList(productList.total));
 			dispatch(actions.initializedList(true));
 		} catch (e) {
 			throw e;
@@ -110,7 +126,9 @@ export const changeCurrentCategoryTC = (category: string): ThunkType => {
 		dispatch(actions.initializedList(false));
 		try {
 			const productList = await ProductListAPI.getProductList(1, category);
+
 			dispatch(actions.initialProductsList(productList.products));
+			dispatch(actions.setTotalList(productList.total));
 			dispatch(actions.initializedList(true));
 		} catch (e) {
 			throw e;
