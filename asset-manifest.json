@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/test_for_graffinteractive.loc/static/css/main.dc18b762.css",
+    "main.js": "/test_for_graffinteractive.loc/static/js/main.15ad2959.js",
+    "static/css/206.e0cff87f.chunk.css": "/test_for_graffinteractive.loc/static/css/206.e0cff87f.chunk.css",
+    "static/js/206.a9334e53.chunk.js": "/test_for_graffinteractive.loc/static/js/206.a9334e53.chunk.js",
+    "static/css/709.6cd9a3d1.chunk.css": "/test_for_graffinteractive.loc/static/css/709.6cd9a3d1.chunk.css",
+    "static/js/709.c10ae6c5.chunk.js": "/test_for_graffinteractive.loc/static/js/709.c10ae6c5.chunk.js",
+    "static/js/787.60789f59.chunk.js": "/test_for_graffinteractive.loc/static/js/787.60789f59.chunk.js",
+    "static/media/CheckBox_Yes.svg": "/test_for_graffinteractive.loc/static/media/CheckBox_Yes.66111ab71162a239836d.svg",
+    "index.html": "/test_for_graffinteractive.loc/index.html",
+    "static/media/Filters.svg": "/test_for_graffinteractive.loc/static/media/Filters.bd61ead80308963ae9bc.svg",
+    "static/media/Arrow_Right.svg": "/test_for_graffinteractive.loc/static/media/Arrow_Right.9eca432734d162846faa.svg",
+    "static/media/Chevron_Down.svg": "/test_for_graffinteractive.loc/static/media/Chevron_Down.6a541bbc5f0d047283bc.svg",
+    "static/media/CheckBox_No.svg": "/test_for_graffinteractive.loc/static/media/CheckBox_No.de918b9a5321d7cf411f.svg",
+    "main.dc18b762.css.map": "/test_for_graffinteractive.loc/static/css/main.dc18b762.css.map",
+    "main.15ad2959.js.map": "/test_for_graffinteractive.loc/static/js/main.15ad2959.js.map",
+    "206.e0cff87f.chunk.css.map": "/test_for_graffinteractive.loc/static/css/206.e0cff87f.chunk.css.map",
+    "206.a9334e53.chunk.js.map": "/test_for_graffinteractive.loc/static/js/206.a9334e53.chunk.js.map",
+    "709.6cd9a3d1.chunk.css.map": "/test_for_graffinteractive.loc/static/css/709.6cd9a3d1.chunk.css.map",
+    "709.c10ae6c5.chunk.js.map": "/test_for_graffinteractive.loc/static/js/709.c10ae6c5.chunk.js.map",
+    "787.60789f59.chunk.js.map": "/test_for_graffinteractive.loc/static/js/787.60789f59.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc18b762.css",
+    "static/js/main.15ad2959.js"
+  ]
+}
