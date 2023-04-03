@@ -71,10 +71,11 @@ export const actions = {
 };
 
 export const initialProductsListTC = (page:number = 1): ThunkType => {
-	return async (dispatch) => {
+	return async (dispatch, getState) => {
 		dispatch(actions.initializedList(false));
 		try {
-			const productCategories = await SidebarAPI.getCategories();
+			const currentCategory = [getState().sidebar.currentCategory];
+			const productCategories = currentCategory[0] ? currentCategory : await SidebarAPI.getCategories();
 			const productList = await ProductListAPI.getProductList(page, productCategories[0]);
 
 			dispatch(actions.initialProductsList(productList.products));
