@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/test_for_graffinteractive.loc/static/css/main.dc18b762.css",
+    "main.css": "/test_for_graffinteractive.loc/static/css/main.e9ca3064.css",
     "main.js": "/test_for_graffinteractive.loc/static/js/main.5d2161ee.js",
     "static/css/206.e0cff87f.chunk.css": "/test_for_graffinteractive.loc/static/css/206.e0cff87f.chunk.css",
     "static/js/206.a9334e53.chunk.js": "/test_for_graffinteractive.loc/static/js/206.a9334e53.chunk.js",
@@ -13,7 +13,7 @@
     "static/media/Arrow_Right.svg": "/test_for_graffinteractive.loc/static/media/Arrow_Right.9eca432734d162846faa.svg",
     "static/media/Chevron_Down.svg": "/test_for_graffinteractive.loc/static/media/Chevron_Down.6a541bbc5f0d047283bc.svg",
     "static/media/CheckBox_No.svg": "/test_for_graffinteractive.loc/static/media/CheckBox_No.de918b9a5321d7cf411f.svg",
-    "main.dc18b762.css.map": "/test_for_graffinteractive.loc/static/css/main.dc18b762.css.map",
+    "main.e9ca3064.css.map": "/test_for_graffinteractive.loc/static/css/main.e9ca3064.css.map",
     "main.5d2161ee.js.map": "/test_for_graffinteractive.loc/static/js/main.5d2161ee.js.map",
     "206.e0cff87f.chunk.css.map": "/test_for_graffinteractive.loc/static/css/206.e0cff87f.chunk.css.map",
     "206.a9334e53.chunk.js.map": "/test_for_graffinteractive.loc/static/js/206.a9334e53.chunk.js.map",
@@ -22,7 +22,7 @@
     "787.60789f59.chunk.js.map": "/test_for_graffinteractive.loc/static/js/787.60789f59.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dc18b762.css",
+    "static/css/main.e9ca3064.css",
     "static/js/main.5d2161ee.js"
   ]
 }
