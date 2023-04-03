@@ -6,7 +6,7 @@ import {setCurrentCategoryTC} from "../../../../redux/sidebar-reducer/sidebar-re
 import {changeCurrentCategoryTC} from "../../../../redux/list-reducer/list-reducer";
 import {notify} from "../../../../api/toast";
 
-
+let debounce = 0;
 interface PropsType {
 	name: string,
 }
@@ -21,8 +21,12 @@ export const RadioItem: React.FC<PropsType> = ({name}) => {
 		dispatch(setCurrentCategoryTC(name));
 		dispatch(changeCurrentCategoryTC(name));
 
-		notify("Внимание! Фильтры могут быть отдельны друг от друга, потому что нет соотвествующих ендпоинтов в открытом источнике данных!");
-		setTimeout(() => notify("Но я старался!"), 1500);
+
+		if(debounce === 0) {
+			notify("Внимание! Фильтры могут быть отдельны друг от друга, потому что нет соотвествующих ендпоинтов в открытом источнике данных! Но я старался!");
+			debounce = 1;
+		}
+		if(debounce === 1) setTimeout(() => debounce = 0, 1500);
 	};
 
 

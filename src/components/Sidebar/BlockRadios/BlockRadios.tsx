@@ -1,15 +1,11 @@
 import React from "react";
 import styles from "./BlockRadios.module.scss";
-import {getProductBrandsCheckeds, getProductCategories} from "../../../redux/sidebar-reducer/sidebar-selectors";
+import {getProductCategories} from "../../../redux/sidebar-reducer/sidebar-selectors";
 import {useSelector} from "react-redux";
 import {RadioItem} from "./RadioItem/RadioItem";
 
 export const BlockRadios: React.FC = () => {
 	const productCategories = useSelector(getProductCategories);
-
-
-	//Кол-во активных чекбоксов
-	const productBrandsCheckeds = useSelector(getProductBrandsCheckeds);
 
 
 	return <section className={styles.inputBlock}>

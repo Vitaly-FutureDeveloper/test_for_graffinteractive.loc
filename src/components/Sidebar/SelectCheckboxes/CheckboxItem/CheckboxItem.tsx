@@ -5,8 +5,9 @@ import {getProductBrandsValue} from "../../../../redux/sidebar-reducer/sidebar-s
 import {AppStateType} from "../../../../redux/store";
 import {checkSidebarBrandTC} from "../../../../redux/sidebar-reducer/sidebar-reducer";
 import {changeSidebarBrandTC} from "../../../../redux/list-reducer/list-reducer";
+import {notify} from "../../../../api/toast";
 
-
+let debounce = 0;
 interface PropsType {
 	name: string,
 }
@@ -21,6 +22,12 @@ export const CheckboxItem: React.FC<PropsType> = ({name}) => {
 		evt.preventDefault();
 		dispatch(checkSidebarBrandTC(name));
 		dispatch(changeSidebarBrandTC());
+
+		if(debounce === 0) {
+			notify("Внимание! Фильтры могут быть отдельны друг от друга, потому что нет соотвествующих ендпоинтов в открытом источнике данных! Но я старался!");
+			debounce = 1;
+		}
+		if(debounce === 1) setTimeout(() => debounce = 0, 1500);
 	};
 
 
