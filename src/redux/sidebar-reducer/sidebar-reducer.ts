@@ -129,8 +129,11 @@ export const checkSidebarBrandTC = (name: string):ThunkType => {
 };
 
 export const setCurrentCategoryTC = (name: string):ThunkType => {
-	return async (dispatch) => {
+	return async (dispatch, getState) => {
+		const sidebarBrandsOn = getState().sidebar.brands?.map((brand) => brand.brand);
+
 		dispatch(actions.setCurrentCategory(name));
+		dispatch(actions.initialSidebarBrands(sidebarBrandsOn));
 	}
 };
 

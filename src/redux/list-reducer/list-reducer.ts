@@ -16,14 +16,14 @@ type ActionsTypes = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionsTypes>;
 
 
-const listReducer = (state=initialState, action:ActionsTypes): InitialStateType => {
+const listReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
-	switch (action.type){
+	switch (action.type) {
 
 		case "SN/productList/INITIAL_PRODUCT_LIST": {
 			return {
 				...state,
-				products: action.products.map((list : ResponseProductType) => ({
+				products: action.products.map((list: ResponseProductType) => ({
 					id: list.id,
 					title: list.title,
 					brand: list.brand,
@@ -46,21 +46,21 @@ const listReducer = (state=initialState, action:ActionsTypes): InitialStateType 
 };
 
 export const actions = {
-	initialProductsList : (products: any) => ({
+	initialProductsList: (products: any) => ({
 		type: "SN/productList/INITIAL_PRODUCT_LIST",
 		products
 	}) as const,
 
-	initializedList : (initialized: boolean) => ({
+	initializedList: (initialized: boolean) => ({
 		type: "SN/productList/INITIALIZED",
 		initialized
 	}) as const,
 };
 
-export const initialProductsListTC = ():ThunkType => {
+export const initialProductsListTC = (): ThunkType => {
 	return async (dispatch) => {
 		dispatch(actions.initializedList(false));
-		try{
+		try {
 			const productCategories = await SidebarAPI.getCategories();
 			const productList = await ProductListAPI.getProductList(1, productCategories[0]);
 			dispatch(actions.initialProductsList(productList.products));
@@ -71,10 +71,10 @@ export const initialProductsListTC = ():ThunkType => {
 	}
 };
 
-export const searchObjectTC = (text: string):ThunkType => {
+export const searchObjectTC = (text: string): ThunkType => {
 	return async (dispatch) => {
 		dispatch(actions.initializedList(false));
-		try{
+		try {
 			const productList = await SidebarAPI.getSearched(text);
 
 			dispatch(actions.initialProductsList(productList.products));
@@ -85,10 +85,30 @@ export const searchObjectTC = (text: string):ThunkType => {
 	}
 };
 
-export const changeCurrentCategoryTC = (category: string):ThunkType => {
+
+export const changeSidebarBrandTC = (): ThunkType => {
+	return async (dispatch, getState) => {
+		//Нет эндпоинта, чтоб получить список брэндов - фильтруем вручную
+		try {
+			const currentCategory = getState().sidebar.currentCategory;
+
+			const productList = await ProductListAPI.getProductListUnlimit();
+			const exceptionsBrands = getState().sidebar.brands?.filter((brand) => !brand.checked).map((brand) => brand.brand);
+
+			const totalProductList = productList.products.filter((product: any) =>
+				!exceptionsBrands?.includes(product.brand) && product.category.includes(currentCategory));
+
+			dispatch(actions.initialProductsList(totalProductList));
+			dispatch(actions.initializedList(true));
+		} catch (e) {
+			throw e;
+		}
+	}
+};
+export const changeCurrentCategoryTC = (category: string): ThunkType => {
 	return async (dispatch) => {
 		dispatch(actions.initializedList(false));
-		try{
+		try {
 			const productList = await ProductListAPI.getProductList(1, category);
 			dispatch(actions.initialProductsList(productList.products));
 			dispatch(actions.initializedList(true));

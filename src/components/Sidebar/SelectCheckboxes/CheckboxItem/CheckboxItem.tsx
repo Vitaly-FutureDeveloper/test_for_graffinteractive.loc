@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getProductBrandsValue} from "../../../../redux/sidebar-reducer/sidebar-selectors";
 import {AppStateType} from "../../../../redux/store";
 import {checkSidebarBrandTC} from "../../../../redux/sidebar-reducer/sidebar-reducer";
+import {changeSidebarBrandTC} from "../../../../redux/list-reducer/list-reducer";
 
 
 interface PropsType {
@@ -19,6 +20,7 @@ export const CheckboxItem: React.FC<PropsType> = ({name}) => {
 	const onCheckCheckbox = (evt: React.ChangeEvent<HTMLInputElement>) => {
 		evt.preventDefault();
 		dispatch(checkSidebarBrandTC(name));
+		dispatch(changeSidebarBrandTC());
 	};
 
 
